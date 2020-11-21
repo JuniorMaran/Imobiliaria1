@@ -1,0 +1,54 @@
+public class Apartamento extends Imovel implements Registra, GetInfoImovel{
+	private String nome;
+	private int quartos, banheiros, garagem, cozinhas;
+	
+	Apartamento (float area, Endereco e,float valor,int cod, String n, int d, int b, int g, int c){
+		super(area, e, valor, cod);
+		nome = n;
+		quartos = d;
+		banheiros = b;
+		cozinhas = c;
+		garagem = g;
+	}
+	
+	Apartamento (float area,float valor, int cod, Endereco e, String n, int d, int b, int c){
+		super(area, e, valor, cod);
+		nome = n;
+		quartos = d;
+		banheiros = b;
+		garagem = 0;
+	}
+	
+	public String getNome(){
+		return nome;
+	}
+	
+	public int getQuartos(){
+		return quartos;
+	}
+	
+	public int getBanheiros(){
+		return banheiros;
+	}
+	
+	public int getGaragem(){
+		return garagem;
+	}
+	
+	public int getCozinhas(){
+		return cozinhas;
+	}
+
+	public String toString() {
+		String imprime = "APTO    Edificio: " + nome + " -  Endereco: " + getEndereco();
+		imprime +=  "Quartos: " + quartos + "  Banheiros: " + banheiros + "  Vagas na Garagem: " + garagem + " Cozinhas " + cozinhas +;  
+		imprime += "\nArea: " + getArea() +"m²\n\n";
+		return imprime;
+	}
+
+	@Override
+	public String stringToSave() {
+		Endereco end = super.getEndereco();
+		String string = super.getCodigo()+"|"+super.getArea()+"|"+end.stringToSave()+"|"+super.getValor()+"|"+quartos+"|"+banheiros+"|"+garagem+"|"+cozinhas+"|"+nome+"\n";
+		return string;
+	}
